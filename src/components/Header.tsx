@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { FiMenu, FiX } from 'react-icons/fi';
 import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
@@ -91,13 +92,7 @@ const Header = () => {
             color: 'var(--text-primary)',
           }}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {isMobileMenuOpen ? (
-              <path d="M6 6l12 12M6 18L18 6" />
-            ) : (
-              <path d="M3 12h18M3 6h18M3 18h18" />
-            )}
-          </svg>
+          {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
 
         {/* Mobile Menu */}

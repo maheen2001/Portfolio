@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { FiMail, FiMapPin, FiBriefcase, FiSend } from 'react-icons/fi';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -10,6 +11,12 @@ const Contact = () => {
         alert('Message sent! I will get back to you soon.');
         setFormData({ name: '', email: '', message: '' });
     };
+
+    const contactInfo = [
+        { icon: FiMail, label: 'Email', value: 'maheen@example.com' },
+        { icon: FiMapPin, label: 'Location', value: 'Karachi, Pakistan' },
+        { icon: FiBriefcase, label: 'Status', value: 'Open for opportunities' },
+    ];
 
     return (
         <section id="contact" className="section" style={{ position: 'relative' }}>
@@ -24,13 +31,11 @@ const Contact = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '48px', maxWidth: '1000px', margin: '0 auto' }}>
                     <div>
                         <h3 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '24px' }}>Contact Info</h3>
-                        {[
-                            { icon: '📧', label: 'Email', value: 'maheen@example.com' },
-                            { icon: '📍', label: 'Location', value: 'Karachi, Pakistan' },
-                            { icon: '💼', label: 'Status', value: 'Open for opportunities' },
-                        ].map((item, i) => (
+                        {contactInfo.map((item, i) => (
                             <div key={i} className="card" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
-                                <span style={{ fontSize: '1.5rem' }}>{item.icon}</span>
+                                <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(139, 92, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-primary)' }}>
+                                    <item.icon size={22} />
+                                </div>
                                 <div>
                                     <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>{item.label}</p>
                                     <p style={{ fontWeight: 500 }}>{item.value}</p>
@@ -52,7 +57,10 @@ const Contact = () => {
                             <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Message</label>
                             <textarea required rows={4} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} style={{ width: '100%', padding: '14px 18px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-primary)', fontSize: '1rem', outline: 'none', resize: 'vertical' }} />
                         </div>
-                        <button type="submit" className="btn-primary" style={{ width: '100%' }}>Send Message</button>
+                        <button type="submit" className="btn-primary" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                            <FiSend size={18} />
+                            Send Message
+                        </button>
                     </form>
                 </div>
             </div>
