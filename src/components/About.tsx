@@ -1,8 +1,12 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+
+const TechSphere = dynamic(() => import('./TechSphere'), { ssr: false });
+
 const About = () => {
     const stats = [
-        { number: '3+', label: 'Years Experience' },
+        { number: '4+', label: 'Years Experience' },
         { number: '50+', label: 'Projects Completed' },
         { number: '30+', label: 'Happy Clients' },
         { number: '10+', label: 'Technologies' },
@@ -13,15 +17,8 @@ const About = () => {
             <div className="bg-gradient-blur purple" style={{ top: '0', right: '-300px', position: 'absolute' }} />
             <div className="container">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px', alignItems: 'center' }}>
-                    <div style={{ position: 'relative' }}>
-                        <div className="gradient-border animate-pulse-glow" style={{ width: '100%', maxWidth: '400px', aspectRatio: '1', borderRadius: '24px', overflow: 'hidden', margin: '0 auto' }}>
-                            <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2))', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <div style={{ textAlign: 'center', padding: '40px' }}>
-                                    <div style={{ width: '150px', height: '150px', borderRadius: '50%', background: 'var(--gradient-1)', margin: '0 auto 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem', fontWeight: 700, color: 'white' }}>ML</div>
-                                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Full Stack Developer</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div style={{ position: 'relative', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <TechSphere />
                     </div>
 
                     <div>

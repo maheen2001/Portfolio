@@ -1,11 +1,13 @@
 'use client';
 
+import { FiMonitor, FiServer, FiDatabase, FiSettings } from 'react-icons/fi';
+
 const Skills = () => {
     const skillCategories = [
-        { title: 'Frontend', icon: '🎨', skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3'] },
-        { title: 'Backend', icon: '⚙️', skills: ['Node.js', 'Express.js', 'Python', 'Java', 'Spring Boot', 'REST APIs'] },
-        { title: 'Database', icon: '🗄️', skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Firebase', 'Prisma'] },
-        { title: 'DevOps & Tools', icon: '🛠️', skills: ['Git', 'Docker', 'AWS', 'Vercel', 'CI/CD', 'Linux'] },
+        { title: 'Frontend', icon: <FiMonitor size={32} />, skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3'] },
+        { title: 'Backend', icon: <FiServer size={32} />, skills: ['Node.js', 'Express.js', 'Python', 'Java', 'Spring Boot', 'REST APIs'] },
+        { title: 'Database', icon: <FiDatabase size={32} />, skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Firebase', 'Prisma'] },
+        { title: 'DevOps & Tools', icon: <FiSettings size={32} />, skills: ['Git', 'Docker', 'VPS', 'Vercel', 'CI/CD', 'Linux'] },
     ];
 
     return (
