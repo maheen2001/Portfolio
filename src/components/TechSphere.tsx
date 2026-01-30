@@ -4,6 +4,7 @@ import { useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Html, Center, OrbitControls, Billboard } from '@react-three/drei';
 import * as THREE from 'three';
+import { useTheme } from '@/context/ThemeContext';
 import {
     SiReact, SiNextdotjs, SiNestjs, SiNodedotjs, SiTypescript,
     SiJavascript, SiHtml5, SiCss3, SiTailwindcss, SiPostgresql,
@@ -28,7 +29,7 @@ const icons = [
     { component: SiPython, color: '#3776AB', name: 'Python' },
 ];
 
-function Icon({ position, icon: { component: IconComp, color } }: { position: [number, number, number], icon: any }) {
+function Icon({ position, icon: { component: IconComp, color }, theme }: { position: [number, number, number], icon: any, theme: string }) {
     return (
         <Float speed={2} rotationIntensity={1} floatIntensity={1}>
             <Billboard position={position}>
@@ -38,7 +39,7 @@ function Icon({ position, icon: { component: IconComp, color } }: { position: [n
                         style={{
                             width: '40px',
                             height: '40px',
-                            background: 'rgba(255, 255, 255, 0.05)',
+                            background: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
                             backdropFilter: 'blur(5px)',
                             borderRadius: '12px',
                             display: 'flex',
@@ -52,7 +53,7 @@ function Icon({ position, icon: { component: IconComp, color } }: { position: [n
                         onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.3)'}
                         onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                     >
-                        <IconComp size={24} color={color} />
+                        <IconComp size={24} color={theme === 'light' && color === '#FFFFFF' ? '#000000' : color} />
                     </div>
                 </Html>
             </Billboard>
@@ -60,7 +61,7 @@ function Icon({ position, icon: { component: IconComp, color } }: { position: [n
     );
 }
 
-function OrbitRing({ radius, speed, icons, rotationOffset = 0 }: { radius: number, speed: number, icons: any[], rotationOffset?: number }) {
+function OrbitRing({ radius, speed, icons, rotationOffset = 0, theme }: { radius: number, speed: number, icons: any[], rotationOffset?: number, theme: string }) {
     const groupRef = useRef<THREE.Group>(null);
 
     useFrame((state) => {
@@ -69,12 +70,14 @@ function OrbitRing({ radius, speed, icons, rotationOffset = 0 }: { radius: numbe
         }
     });
 
+    const ringColor = theme === 'dark' ? '#ffffff' : '#4b5563';
+
     return (
         <group ref={groupRef} rotation={[0, rotationOffset, 0]}>
             {/* Orbit path line */}
             <mesh rotation={[Math.PI / 2, 0, 0]}>
                 <ringGeometry args={[radius - 0.02, radius + 0.02, 64]} />
-                <meshBasicMaterial color="#ffffff" transparent opacity={0.1} side={THREE.DoubleSide} />
+                <meshBasicMaterial color={ringColor} transparent opacity={theme === 'dark' ? 0.1 : 0.2} side={THREE.DoubleSide} />
             </mesh>
 
             {/* Icons on the ring */}
@@ -85,7 +88,7 @@ function OrbitRing({ radius, speed, icons, rotationOffset = 0 }: { radius: numbe
                 return (
                     <group key={i} position={[x, 0, z]}>
                         {/* Billboard the icon so it faces camera */}
-                        <Icon position={[0, 0, 0]} icon={icon} />
+                        <Icon position={[0, 0, 0]} icon={icon} theme={theme} />
                     </group>
                 );
             })}
@@ -93,14 +96,14 @@ function OrbitRing({ radius, speed, icons, rotationOffset = 0 }: { radius: numbe
     );
 }
 
-function SolarSystem() {
+function SolarSystem({ theme }: { theme: string }) {
     // Distribute icons into 3 rings
     const ring1 = icons.slice(0, 4);   // Inner ring
     const ring2 = icons.slice(4, 9);   // Middle ring
     const ring3 = icons.slice(9, 15);  // Outer ring
 
     return (
-        <group rotation={[0.3, 0, 0]}> {/* Tilt the whole system slightly */}
+        <group rotation={[0.3, 0, 0]} scale={1.3}> {/* Tilt the whole system slightly and scale up */}
             {/* Center Sun/Core */}
             <mesh>
                 <sphereGeometry args={[0.5, 32, 32]} />
@@ -109,20 +112,22 @@ function SolarSystem() {
             <pointLight position={[0, 0, 0]} intensity={2} color="#ec4899" distance={10} />
 
             {/* Rings */}
-            <OrbitRing radius={1.5} speed={0.8} icons={ring1} rotationOffset={0} />
-            <OrbitRing radius={2.5} speed={0.5} icons={ring2} rotationOffset={1} />
-            <OrbitRing radius={3.5} speed={0.3} icons={ring3} rotationOffset={2} />
+            <OrbitRing radius={1.8} speed={0.8} icons={ring1} rotationOffset={0} theme={theme} />
+            <OrbitRing radius={2.8} speed={0.5} icons={ring2} rotationOffset={1} theme={theme} />
+            <OrbitRing radius={3.8} speed={0.3} icons={ring3} rotationOffset={2} theme={theme} />
         </group>
     );
 }
 
 export default function TechSphere() {
+    const { theme } = useTheme();
+
     return (
         <div style={{ width: '100%', height: '100%', minHeight: '400px' }}>
             <Canvas camera={{ position: [0, 8, 12], fov: 45 }} gl={{ alpha: true, antialias: true }}>
                 <ambientLight intensity={0.2} />
                 <Center>
-                    <SolarSystem />
+                    <SolarSystem theme={theme} />
                 </Center>
                 <OrbitControls enableZoom={false} enablePan={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 3} />
             </Canvas>

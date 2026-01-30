@@ -13,8 +13,8 @@ const Contact = () => {
     };
 
     const contactInfo = [
-        { icon: FiMail, label: 'Email', value: 'maheen@example.com' },
-        { icon: FiMapPin, label: 'Location', value: 'Karachi, Pakistan' },
+        { icon: FiMail, label: 'Email', value: 'laeeqmaheen@gmail.com' },
+        { icon: FiMapPin, label: 'Location', value: 'Peshawar, Pakistan' },
         { icon: FiBriefcase, label: 'Status', value: 'Open for opportunities' },
     ];
 

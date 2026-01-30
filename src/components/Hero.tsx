@@ -151,15 +151,14 @@ const Hero = () => {
                         order: -1;
                         margin-bottom: 40px;
                     }
-                    .hero-image > div > div:last-child,
-                    .hero-image > div > div:nth-last-child(2) {
-                        display: none;
-                    }
                 }
                 @media (max-width: 600px) {
                     .hero-image > div > div[style*="width: 350px"] {
-                        width: 250px !important;
-                        height: 250px !important;
+                        width: 280px !important;
+                        height: 280px !important;
+                    }
+                    h1 {
+                        font-size: 2.5rem !important;
                     }
                 }
             `}</style>

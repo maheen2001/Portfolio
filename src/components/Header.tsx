@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import ThemeToggle from './ThemeToggle';
 
+import Image from 'next/image';
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,9 +43,8 @@ const Header = () => {
       }}
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <a href="#home" style={{ fontSize: '1.5rem', fontWeight: 700, textDecoration: 'none' }}>
-          <span className="gradient-text">Maheen</span>
-          <span style={{ color: 'var(--text-primary)' }}>.dev</span>
+        <a href="#home" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <Image src="/logo.svg" alt="Maheen Logo" width={40} height={40} priority />
         </a>
 
         {/* Desktop Navigation */}
