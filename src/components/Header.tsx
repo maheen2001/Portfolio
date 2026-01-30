@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,9 +34,9 @@ const Header = () => {
         zIndex: 1000,
         padding: '16px 0',
         transition: 'all 0.3s ease',
-        background: isScrolled ? 'rgba(10, 10, 15, 0.9)' : 'transparent',
+        background: isScrolled ? 'var(--header-bg)' : 'transparent',
         backdropFilter: isScrolled ? 'blur(20px)' : 'none',
-        borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.05)' : 'none',
+        borderBottom: isScrolled ? '1px solid var(--border-color)' : 'none',
       }}
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -70,9 +71,12 @@ const Header = () => {
           ))}
         </nav>
 
-        <a href="#contact" className="btn-primary desktop-nav" style={{ padding: '10px 24px', fontSize: '0.9rem', textDecoration: 'none' }}>
-          Let&apos;s Talk
-        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <ThemeToggle />
+          <a href="#contact" className="btn-primary desktop-nav" style={{ padding: '10px 24px', fontSize: '0.9rem', textDecoration: 'none' }}>
+            Let&apos;s Talk
+          </a>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -84,6 +88,7 @@ const Header = () => {
             border: 'none',
             cursor: 'pointer',
             padding: '8px',
+            color: 'var(--text-primary)',
           }}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -103,7 +108,7 @@ const Header = () => {
               top: '100%',
               left: 0,
               right: 0,
-              background: 'rgba(10, 10, 15, 0.98)',
+              background: 'var(--header-bg)',
               backdropFilter: 'blur(20px)',
               padding: '24px',
               display: 'flex',
@@ -127,6 +132,7 @@ const Header = () => {
                 {link.name}
               </a>
             ))}
+            <ThemeToggle />
           </div>
         )}
       </div>

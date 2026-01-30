@@ -7,6 +7,7 @@ import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Background3D from "@/components/Background3D";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
   return (
@@ -15,11 +16,21 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
+        <ScrollReveal>
+          <About />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Skills />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Projects />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Experience />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Contact />
+        </ScrollReveal>
       </main>
       <Footer />
     </>
