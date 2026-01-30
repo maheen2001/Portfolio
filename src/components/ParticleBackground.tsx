@@ -71,15 +71,15 @@ function FloatingShapes() {
         <>
             <mesh ref={mesh1} position={[4, 1, -3]}>
                 <octahedronGeometry args={[0.7, 0]} />
-                <meshBasicMaterial color="#8b5cf6" wireframe transparent opacity={0.5} />
+                <meshBasicMaterial color="#8b5cf6" wireframe transparent opacity={0.08} />
             </mesh>
             <mesh ref={mesh2} position={[-4, -1, -4]}>
                 <torusGeometry args={[0.5, 0.2, 16, 32]} />
-                <meshBasicMaterial color="#ec4899" wireframe transparent opacity={0.4} />
+                <meshBasicMaterial color="#ec4899" wireframe transparent opacity={0.06} />
             </mesh>
             <mesh ref={mesh3} position={[3, 0, -5]}>
                 <icosahedronGeometry args={[0.8, 0]} />
-                <meshBasicMaterial color="#06b6d4" wireframe transparent opacity={0.3} />
+                <meshBasicMaterial color="#06b6d4" wireframe transparent opacity={0.05} />
             </mesh>
         </>
     );

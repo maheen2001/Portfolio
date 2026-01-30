@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 const Hero = () => {
     const texts = ["Maheen Laeeq", "a Full Stack Developer", "a Problem Solver"];
@@ -55,7 +55,7 @@ const Hero = () => {
                         </h1>
 
                         <p className="animate-fade-in-up" style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', maxWidth: '500px', marginBottom: '32px' }}>
-                            Crafting elegant digital experiences with modern technologies. I build scalable web applications that combine beautiful design with powerful functionality.
+                            I'm passionate about turning ideas into reality through code. I love creating web experiences that not only look great but also solve real problems and make people's lives easier.
                         </p>
 
                         <div className="animate-fade-in-up" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '40px' }}>
@@ -65,9 +65,8 @@ const Hero = () => {
 
                         <div className="animate-fade-in-up" style={{ display: 'flex', gap: '16px' }}>
                             {[
-                                { name: 'GitHub', icon: FaGithub, href: '#' },
-                                { name: 'LinkedIn', icon: FaLinkedinIn, href: '#' },
-                                { name: 'Twitter', icon: FaTwitter, href: '#' },
+                                { name: 'GitHub', icon: FaGithub, href: 'https://github.com/maheen2001' },
+                                { name: 'LinkedIn', icon: FaLinkedinIn, href: 'https://www.linkedin.com/in/maheen-laeeq-a224342a6/' },
                             ].map((social) => (
                                 <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)', transition: 'all 0.3s ease' }}>
                                     <social.icon size={20} />
@@ -132,8 +131,13 @@ const Hero = () => {
             {/* Scroll indicator */}
             <div style={{ position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', opacity: 0.6 }}>Scroll Down</span>
-                <div className="scroll-indicator" style={{ width: '24px', height: '40px', border: '2px solid var(--text-secondary)', borderRadius: '12px', position: 'relative', opacity: 0.6 }}>
-                    <div className="scroll-dot" style={{ width: '4px', height: '8px', background: 'var(--accent-primary)', borderRadius: '2px', position: 'absolute', top: '8px', left: '50%', transform: 'translateX(-50%)' }} />
+                <div className="scroll-indicator" style={{ width: '28px', height: '44px', border: '2px solid var(--text-secondary)', borderRadius: '14px', position: 'relative', opacity: 0.6, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '6px' }}>
+                    <div className="scroll-dot" style={{ color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width="12" height="16" viewBox="0 0 12 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="6" y1="1" x2="6" y2="12" />
+                            <path d="M2 9l4 4 4-4" />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
