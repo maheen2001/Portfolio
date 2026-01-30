@@ -3,15 +3,15 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { heroText, socialLinks } from '@/data/socials';
 
 const Hero = () => {
-    const texts = ["Maheen Laeeq", "a Full Stack Developer", "a Problem Solver"];
     const [displayText, setDisplayText] = useState('');
     const [textIndex, setTextIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
-        const currentText = texts[textIndex];
+        const currentText = heroText.titles[textIndex];
         const typingSpeed = isDeleting ? 50 : 100;
         const pauseTime = 2000;
 
@@ -27,13 +27,13 @@ const Hero = () => {
                     setDisplayText(displayText.slice(0, -1));
                 } else {
                     setIsDeleting(false);
-                    setTextIndex((prev) => (prev + 1) % texts.length);
+                    setTextIndex((prev) => (prev + 1) % heroText.titles.length);
                 }
             }
         }, typingSpeed);
 
         return () => clearTimeout(timeout);
-    }, [displayText, isDeleting, textIndex, texts]);
+    }, [displayText, isDeleting, textIndex]);
 
     return (
         <section id="home" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', paddingTop: '80px' }}>
@@ -53,9 +53,14 @@ const Hero = () => {
                             Hi, I&apos;m <span className="gradient-text">{displayText}</span>
                             <span className="typing-cursor" style={{ display: 'inline-block', width: '4px', height: '1em', background: 'var(--accent-primary)', marginLeft: '4px', verticalAlign: 'text-bottom' }} />
                         </h1>
-
-                        <p className="animate-fade-in-up" style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', maxWidth: '500px', marginBottom: '32px' }}>
-                            I'm passionate about turning ideas into reality through code. I love creating web experiences that not only look great but also solve real problems and make people's lives easier.
+                        <p style={{
+                            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                            color: 'var(--text-secondary)',
+                            marginBottom: '40px',
+                            lineHeight: 1.6,
+                            maxWidth: '600px'
+                        }}>
+                            {heroText.intro}
                         </p>
 
                         <div className="animate-fade-in-up" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '40px' }}>
@@ -64,10 +69,7 @@ const Hero = () => {
                         </div>
 
                         <div className="animate-fade-in-up" style={{ display: 'flex', gap: '16px' }}>
-                            {[
-                                { name: 'GitHub', icon: FaGithub, href: 'https://github.com/maheen2001' },
-                                { name: 'LinkedIn', icon: FaLinkedinIn, href: 'https://www.linkedin.com/in/maheen-laeeq-a224342a6/' },
-                            ].map((social) => (
+                            {socialLinks.map((social) => (
                                 <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)', transition: 'all 0.3s ease' }}>
                                     <social.icon size={20} />
                                 </a>

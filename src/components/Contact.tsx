@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { FiMail, FiMapPin, FiBriefcase, FiSend } from 'react-icons/fi';
+import { FiSend } from 'react-icons/fi';
+import { contactDetails } from '@/data/socials';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -11,12 +12,6 @@ const Contact = () => {
         alert('Message sent! I will get back to you soon.');
         setFormData({ name: '', email: '', message: '' });
     };
-
-    const contactInfo = [
-        { icon: FiMail, label: 'Email', value: 'laeeqmaheen@gmail.com' },
-        { icon: FiMapPin, label: 'Location', value: 'Peshawar, Pakistan' },
-        { icon: FiBriefcase, label: 'Status', value: 'Open for opportunities' },
-    ];
 
     return (
         <section id="contact" className="section" style={{ position: 'relative' }}>
@@ -31,7 +26,7 @@ const Contact = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '48px', maxWidth: '1000px', margin: '0 auto' }}>
                     <div>
                         <h3 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '24px' }}>Contact Info</h3>
-                        {contactInfo.map((item, i) => (
+                        {contactDetails.map((item, i) => (
                             <div key={i} className="card" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
                                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(139, 92, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-primary)' }}>
                                     <item.icon size={22} />

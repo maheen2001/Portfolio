@@ -3,11 +3,7 @@
 import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import { IconType } from 'react-icons';
 
-const socialLinks: { name: string; icon: IconType; href: string }[] = [
-    { name: 'GitHub', icon: FaGithub, href: '#' },
-    { name: 'LinkedIn', icon: FaLinkedinIn, href: '#' },
-    { name: 'Twitter', icon: FaTwitter, href: '#' },
-];
+import { socialLinks } from '@/data/socials';
 
 const Footer = () => {
     return (

@@ -1,14 +1,8 @@
 'use client';
 
-import { FiMonitor, FiServer, FiDatabase, FiSettings } from 'react-icons/fi';
+import { skillCategories } from '@/data/skills';
 
 const Skills = () => {
-    const skillCategories = [
-        { title: 'Frontend', icon: <FiMonitor size={32} />, skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3'] },
-        { title: 'Backend', icon: <FiServer size={32} />, skills: ['Node.js', 'Express.js', 'Python', 'Java', 'Spring Boot', 'REST APIs'] },
-        { title: 'Database', icon: <FiDatabase size={32} />, skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Firebase', 'Prisma'] },
-        { title: 'DevOps & Tools', icon: <FiSettings size={32} />, skills: ['Git', 'Docker', 'VPS', 'Vercel', 'CI/CD', 'Linux'] },
-    ];
 
     return (
         <section id="skills" className="section" style={{ background: 'var(--bg-secondary)', position: 'relative' }}>
@@ -24,7 +18,9 @@ const Skills = () => {
                     {skillCategories.map((cat, i) => (
                         <div key={i} className="card gradient-border" style={{ background: 'rgba(255, 255, 255, 0.02)' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
-                                <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: 'rgba(139, 92, 246, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.8rem' }}>{cat.icon}</div>
+                                <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: 'rgba(139, 92, 246, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.8rem' }}>
+                                    {cat.icon && <cat.icon size={32} />}
+                                </div>
                                 <h3 style={{ fontSize: '1.3rem', fontWeight: 600 }}>{cat.title}</h3>
                             </div>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
