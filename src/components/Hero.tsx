@@ -1,6 +1,38 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+
 const Hero = () => {
+    const texts = ["Maheen Laeeq", "a Full Stack Developer", "a Problem Solver"];
+    const [displayText, setDisplayText] = useState('');
+    const [textIndex, setTextIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    useEffect(() => {
+        const currentText = texts[textIndex];
+        const typingSpeed = isDeleting ? 50 : 100;
+        const pauseTime = 2000;
+
+        const timeout = setTimeout(() => {
+            if (!isDeleting) {
+                if (displayText.length < currentText.length) {
+                    setDisplayText(currentText.slice(0, displayText.length + 1));
+                } else {
+                    setTimeout(() => setIsDeleting(true), pauseTime);
+                }
+            } else {
+                if (displayText.length > 0) {
+                    setDisplayText(displayText.slice(0, -1));
+                } else {
+                    setIsDeleting(false);
+                    setTextIndex((prev) => (prev + 1) % texts.length);
+                }
+            }
+        }, typingSpeed);
+
+        return () => clearTimeout(timeout);
+    }, [displayText, isDeleting, textIndex, texts]);
+
     return (
         <section id="home" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', paddingTop: '80px' }}>
             <div className="bg-gradient-blur purple" style={{ top: '-200px', right: '-200px', position: 'absolute' }} />
@@ -13,13 +45,10 @@ const Hero = () => {
                         <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Available for freelance projects</span>
                     </div>
 
-                    <h1 className="animate-fade-in-up" style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: '24px' }}>
-                        Hi, I&apos;m <span className="gradient-text">Maheen Laeeq</span>
+                    <h1 className="animate-fade-in-up" style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: '24px', minHeight: '2.3em' }}>
+                        Hi, I&apos;m <span className="gradient-text">{displayText}</span>
+                        <span className="typing-cursor" style={{ display: 'inline-block', width: '4px', height: '1em', background: 'var(--accent-primary)', marginLeft: '4px', verticalAlign: 'text-bottom' }} />
                     </h1>
-
-                    <h2 className="animate-fade-in-up" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '24px' }}>
-                        Full Stack Developer
-                    </h2>
 
                     <p className="animate-fade-in-up" style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', maxWidth: '600px', marginBottom: '40px' }}>
                         Crafting elegant digital experiences with modern technologies. I build scalable web applications that combine beautiful design with powerful functionality.

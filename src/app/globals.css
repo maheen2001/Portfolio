@@ -223,6 +223,23 @@ body {
     animation: scroll-bounce 2s ease-in-out infinite;
 }
 
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.typing-cursor {
+    animation: blink 1s step-end infinite;
+}
+
 .bg-gradient-blur {
     position: absolute;
     width: 600px;
